@@ -2685,8 +2685,8 @@
     });
   }
 
-  var timeSunday = weekday(0);
-  var timeMonday = weekday(1);
+  var sunday = weekday(0);
+  var monday = weekday(1);
   var tuesday = weekday(2);
   var wednesday = weekday(3);
   var thursday = weekday(4);
@@ -3237,7 +3237,7 @@
   }
 
   function formatWeekNumberSunday(d, p) {
-    return pad(timeSunday.count(timeYear(d), d), p, 2);
+    return pad(sunday.count(timeYear(d), d), p, 2);
   }
 
   function formatWeekdayNumber(d) {
@@ -3245,7 +3245,7 @@
   }
 
   function formatWeekNumberMonday(d, p) {
-    return pad(timeMonday.count(timeYear(d), d), p, 2);
+    return pad(monday.count(timeYear(d), d), p, 2);
   }
 
   function formatYear(d, p) {
