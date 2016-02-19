@@ -1,0 +1,1 @@
+export {default as chart} from './src/bar_chart';
