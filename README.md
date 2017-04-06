@@ -1,6 +1,8 @@
 d3-example-bar-chart-plugin
 ===
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/53seven/d3-example-bar-chart-plugin.svg)](https://greenkeeper.io/)
+
 [![build status](https://travis-ci.org/53seven/d3-example-bar-chart-plugin.svg)](https://travis-ci.org/53seven/d3-example-bar-chart-plugin)
 
 A reimplementation of [Let's Make a Bar Chart III](https://bost.ocks.org/mike/bar/3/) with the plugin infrastructure of D3v4.
