@@ -894,7 +894,7 @@
   var ascendingBisect = bisector(ascending);
   var bisectRight = ascendingBisect.right;
 
-  function sequence(start, stop, step) {
+  function range(start, stop, step) {
     start = +start, stop = +stop, step = (n = arguments.length) < 2 ? (stop = start, start = 0, 1) : n < 3 ? 1 : +step;
 
     var i = -1,
@@ -913,7 +913,7 @@
   var e2 = Math.sqrt(2);
   function ticks(start, stop, count) {
     var step = tickStep(start, stop, count);
-    return sequence(
+    return range(
       Math.ceil(start / step) * step,
       Math.floor(stop / step) * step + step / 2, // inclusive
       step
@@ -1077,7 +1077,7 @@
     var scale = ordinal().unknown(undefined),
         domain = scale.domain,
         ordinalRange = scale.range,
-        range = [0, 1],
+        range$$ = [0, 1],
         step,
         bandwidth,
         round = false,
@@ -1089,15 +1089,15 @@
 
     function rescale() {
       var n = domain().length,
-          reverse = range[1] < range[0],
-          start = range[reverse - 0],
-          stop = range[1 - reverse];
+          reverse = range$$[1] < range$$[0],
+          start = range$$[reverse - 0],
+          stop = range$$[1 - reverse];
       step = (stop - start) / Math.max(1, n - paddingInner + paddingOuter * 2);
       if (round) step = Math.floor(step);
       start += (stop - start - step * (n - paddingInner)) * align;
       bandwidth = step * (1 - paddingInner);
       if (round) start = Math.round(start), bandwidth = Math.round(bandwidth);
-      var values = sequence(n).map(function(i) { return start + step * i; });
+      var values = range(n).map(function(i) { return start + step * i; });
       return ordinalRange(reverse ? values.reverse() : values);
     }
 
@@ -1106,11 +1106,11 @@
     };
 
     scale.range = function(_) {
-      return arguments.length ? (range = [+_[0], +_[1]], rescale()) : range.slice();
+      return arguments.length ? (range$$ = [+_[0], +_[1]], rescale()) : range$$.slice();
     };
 
     scale.rangeRound = function(_) {
-      return range = [+_[0], +_[1]], round = true, rescale();
+      return range$$ = [+_[0], +_[1]], round = true, rescale();
     };
 
     scale.bandwidth = function() {
@@ -1144,7 +1144,7 @@
     scale.copy = function() {
       return band()
           .domain(domain())
-          .range(range)
+          .range(range$$)
           .round(round)
           .paddingInner(paddingInner)
           .paddingOuter(paddingOuter)
@@ -1894,13 +1894,13 @@
     return interpolateCubehelixLong;
   })(1);
 
-  function constant$1(x) {
+  function constant(x) {
     return function() {
       return x;
     };
   }
 
-  function number$2(x) {
+  function number$1(x) {
     return +x;
   }
 
@@ -1909,7 +1909,7 @@
   function deinterpolateLinear(a, b) {
     return (b -= (a = +a))
         ? function(x) { return (x - a) / b; }
-        : constant$1(b);
+        : constant(b);
   }
 
   function deinterpolateClamp(deinterpolate) {
@@ -1990,7 +1990,7 @@
     };
 
     scale.domain = function(_) {
-      return arguments.length ? (domain = map.call(_, number$2), rescale()) : domain.slice();
+      return arguments.length ? (domain = map.call(_, number$1), rescale()) : domain.slice();
     };
 
     scale.range = function(_) {
@@ -3607,7 +3607,7 @@
 
   var slice$1 = Array.prototype.slice;
 
-  function identity$2(x) {
+  function identity$1(x) {
     return x;
   }
 
@@ -3656,7 +3656,7 @@
 
     function axis(g) {
       var values = tickValues == null ? (scale.ticks ? scale.ticks.apply(scale, tickArguments) : scale.domain()) : tickValues,
-          format = tickFormat == null ? (scale.tickFormat ? scale.tickFormat.apply(scale, tickArguments) : identity$2) : tickFormat,
+          format = tickFormat == null ? (scale.tickFormat ? scale.tickFormat.apply(scale, tickArguments) : identity$1) : tickFormat,
           spacing = Math.max(tickSizeInner, 0) + tickPadding,
           position = scale.bandwidth ? center(scale) : scale,
           range = scale.range();
@@ -3866,7 +3866,7 @@
     return line_chart;
   }
 
-  var version = "0.1.3";
+  var version = "0.1.4";
 
   exports.version = version;
   exports.chart = constructor;
