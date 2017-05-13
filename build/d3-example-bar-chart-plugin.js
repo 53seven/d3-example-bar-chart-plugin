@@ -954,6 +954,7 @@
   function Map() {}
 
   Map.prototype = map$1.prototype = {
+    constructor: Map,
     has: function(key) {
       return (prefix + key) in this;
     },
