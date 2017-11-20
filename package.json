@@ -14,7 +14,7 @@
     "url": "https://github.com/53seven/d3-example-bar-chart-plugin.git"
   },
   "scripts": {
-    "build": "mkdir -p build && node -e 'process.stdout.write(\"var version = \\\"\" + require(\"./package.json\").version + \"\\\"; export * from \\\"../index\\\"; export {version};\");' > build/bundle.js && rollup -c rollup.config.js -f umd -u d3-example-bar-chart-plugin -n d3_example_bar_chart_plugin -o build/d3-example-bar-chart-plugin.js -- build/bundle.js",
+    "build": "mkdir -p build && node -e 'process.stdout.write(\"var version = \\\"\" + require(\"./package.json\").version + \"\\\"; export * from \\\"../index\\\"; export {version};\");' > build/bundle.js && rollup -c rollup.config.js -f umd --amd.id d3-example-bar-chart-plugin -n d3_example_bar_chart_plugin -o build/d3-example-bar-chart-plugin.js -- build/bundle.js",
     "minify": "uglifyjs build/d3-example-bar-chart-plugin.js -c -m -o build/d3-example-bar-chart-plugin.min.js",
     "archive": "rm -f build/d3-example-bar-chart-plugin.zip && zip -j build/d3-example-bar-chart-plugin.zip -- LICENSE README.md build/d3-example-bar-chart-plugin.js build/d3-example-bar-chart-plugin.min.js",
     "pretest": "npm run build",
@@ -27,7 +27,7 @@
     "faucet": "0.0",
     "jsdom": "^11.0.0",
     "lodash": "^4.17.4",
-    "rollup": "0.43.1",
+    "rollup": "0.51.8",
     "rollup-plugin-commonjs": "^8.0.2",
     "rollup-plugin-node-resolve": "^3.0.0",
     "tape": "4",
