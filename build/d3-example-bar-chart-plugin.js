@@ -3764,7 +3764,7 @@ function constructor() {
   return line_chart;
 }
 
-var version = "0.1.5";
+var version = "0.1.6";
 
 exports.version = version;
 exports.chart = constructor;
